@@ -8,10 +8,10 @@ from scipy.ndimage import median_filter
 from scipy.signal import savgol_filter
 
 H_REST = 0.015   #m, pinch point height when the hand lies flat on the table
-H_GRASP = 0.05  #m,height of the bowl rim where you pinch it (measure your bowl!)
-PALM = [0, 1, 5, 9, 13, 17] #wrist, thumb base, finger bases: rigid part of the hand
+H_GRASP = 0.065  #m, where you pinch the bowl: rim is 7 cm, fingertips sit ~0.5 cm below it
+PALM = [0, 1, 5, 9, 13, 17]  #wrist, thumb base, finger bases: rigid part of the hand
 THUMB_TIP, INDEX_TIP = 4, 8
-STILL_SPEED = 0.6 #palm-widths per second below which the hand counts as still
+STILL_SPEED = 0.6   #palm-widths per second below which the hand counts as still
 MIN_REST_S = 0.5
 MIN_GRASP_S = 1.0
 
@@ -53,7 +53,7 @@ def main():
     px, world = fill_nans(px), fill_nans(world)
     Kinv = np.linalg.inv(K)
 
-    #1. relative 3D hand from palm PnP (fixed nominal palm size) 
+    #1. relative 3D hand from palm PnP (fixed nominal palm size)
     def palm_size(p):
         return np.linalg.norm(p - p.mean(0), axis=1).mean()
 
