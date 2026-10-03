@@ -1,0 +1,6 @@
+# Mac (stage 1-2: hand tracking). Tested on macOS / Apple M1, Python 3.12.
+mediapipe==0.10.21
+opencv-contrib-python==4.11.0.86
+numpy<2
+scipy
+matplotlib
