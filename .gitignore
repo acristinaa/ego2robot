@@ -53,3 +53,5 @@ Thumbs.db
 
 models/
 raw.npz
+
+data/sim_episodes/
