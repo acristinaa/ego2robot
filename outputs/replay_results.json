@@ -1,0 +1,186 @@
+{
+  "overall_success": 0.89,
+  "scenes_per_demo": 10,
+  "per_demo": {
+    "session_01/demo_00": {
+      "success": "10/10",
+      "rate": 1.0,
+      "pick_idx": 109,
+      "place_idx": 312,
+      "carry_rotation_deg": 175.54270114088794,
+      "carry_scale": 0.44352852306645385,
+      "human_lift_cm": 12.95824021189939
+    },
+    "session_01/demo_01": {
+      "success": "10/10",
+      "rate": 1.0,
+      "pick_idx": 94,
+      "place_idx": 211,
+      "carry_rotation_deg": -94.10716704645374,
+      "carry_scale": 1.257909812205076,
+      "human_lift_cm": 1.1111262666201065
+    },
+    "session_01/demo_02": {
+      "success": "10/10",
+      "rate": 1.0,
+      "pick_idx": 140,
+      "place_idx": 290,
+      "carry_rotation_deg": 30.729934474174907,
+      "carry_scale": 0.8145123870880667,
+      "human_lift_cm": 8.59003059357216
+    },
+    "session_01/demo_03": {
+      "success": "10/10",
+      "rate": 1.0,
+      "pick_idx": 128,
+      "place_idx": 281,
+      "carry_rotation_deg": 154.04800403429414,
+      "carry_scale": 0.7951368809350178,
+      "human_lift_cm": 5.483041089906215
+    },
+    "session_01/demo_04": {
+      "success": "10/10",
+      "rate": 1.0,
+      "pick_idx": 75,
+      "place_idx": 266,
+      "carry_rotation_deg": -33.917029698193,
+      "carry_scale": 0.38380080627783814,
+      "human_lift_cm": 3.282486905326809
+    },
+    "session_01/demo_05": {
+      "success": "10/10",
+      "rate": 1.0,
+      "pick_idx": 155,
+      "place_idx": 244,
+      "carry_rotation_deg": 275.57962545848045,
+      "carry_scale": 2.8720465894776717,
+      "human_lift_cm": 2.863804461755238
+    },
+    "session_01/demo_06": {
+      "success": "10/10",
+      "rate": 1.0,
+      "pick_idx": 135,
+      "place_idx": 246,
+      "carry_rotation_deg": 125.46944207061486,
+      "carry_scale": 0.5041212597156993,
+      "human_lift_cm": 1.2973550732398513
+    },
+    "session_01/demo_07": {
+      "success": "10/10",
+      "rate": 1.0,
+      "pick_idx": 89,
+      "place_idx": 253,
+      "carry_rotation_deg": -56.39412480365095,
+      "carry_scale": 1.5637984881554277,
+      "human_lift_cm": 4.719773842179295
+    },
+    "session_01/demo_08": {
+      "success": "10/10",
+      "rate": 1.0,
+      "pick_idx": 113,
+      "place_idx": 235,
+      "carry_rotation_deg": 26.015403066587027,
+      "carry_scale": 0.5630613697106814,
+      "human_lift_cm": 21.746522663388088
+    },
+    "session_01/demo_09": {
+      "success": "10/10",
+      "rate": 1.0,
+      "pick_idx": 103,
+      "place_idx": 257,
+      "carry_rotation_deg": 143.62431520180326,
+      "carry_scale": 0.375988802949602,
+      "human_lift_cm": 7.405476812433277
+    },
+    "session_01/demo_10": {
+      "success": "10/10",
+      "rate": 1.0,
+      "pick_idx": 53,
+      "place_idx": 218,
+      "carry_rotation_deg": -18.858071551087132,
+      "carry_scale": 0.7766710507857889,
+      "human_lift_cm": 5.779866610243261
+    },
+    "session_01/demo_11": {
+      "success": "10/10",
+      "rate": 1.0,
+      "pick_idx": 95,
+      "place_idx": 206,
+      "carry_rotation_deg": -91.91402290039349,
+      "carry_scale": 0.997527944763814,
+      "human_lift_cm": 10.562685241802756
+    },
+    "session_01/demo_12": {
+      "success": "10/10",
+      "rate": 1.0,
+      "pick_idx": 96,
+      "place_idx": 202,
+      "carry_rotation_deg": 167.48657955444412,
+      "carry_scale": 0.5533063058331568,
+      "human_lift_cm": 0.8822120133277378
+    },
+    "session_01/demo_13": {
+      "success": "7/10",
+      "rate": 0.7,
+      "pick_idx": 96,
+      "place_idx": 190,
+      "carry_rotation_deg": -52.1422552498733,
+      "carry_scale": 0.6406171264065924,
+      "human_lift_cm": 1.831772157724565
+    },
+    "session_01/demo_14": {
+      "success": "10/10",
+      "rate": 1.0,
+      "pick_idx": 88,
+      "place_idx": 205,
+      "carry_rotation_deg": 152.37371453911692,
+      "carry_scale": 0.5560639418701943,
+      "human_lift_cm": 3.1375681263597217
+    },
+    "session_01/demo_15": {
+      "success": "10/10",
+      "rate": 1.0,
+      "pick_idx": 68,
+      "place_idx": 202,
+      "carry_rotation_deg": -86.69256042981935,
+      "carry_scale": 1.453047041288332,
+      "human_lift_cm": 0.0
+    },
+    "session_01/demo_16": {
+      "success": "0/10",
+      "rate": 0.0,
+      "pick_idx": 70,
+      "place_idx": 203,
+      "carry_rotation_deg": 19.324809017081133,
+      "carry_scale": 0.7030566606289098,
+      "human_lift_cm": 0.9099634748683347
+    },
+    "session_01/demo_17": {
+      "success": "10/10",
+      "rate": 1.0,
+      "pick_idx": 107,
+      "place_idx": 198,
+      "carry_rotation_deg": 117.86884005858107,
+      "carry_scale": 0.35140945664172585,
+      "human_lift_cm": 0.3587512103104848
+    },
+    "session_01/demo_18": {
+      "success": "1/10",
+      "rate": 0.1,
+      "pick_idx": 41,
+      "place_idx": 212,
+      "carry_rotation_deg": -18.97409046364614,
+      "carry_scale": 0.481244230795682,
+      "human_lift_cm": 9.782154907405118
+    },
+    "test_01/demo_00": {
+      "success": "10/10",
+      "rate": 1.0,
+      "pick_idx": 172,
+      "place_idx": 410,
+      "carry_rotation_deg": 208.7492511281543,
+      "carry_scale": 0.9044563306377108,
+      "human_lift_cm": 4.95402235221245
+    }
+  }
+}
