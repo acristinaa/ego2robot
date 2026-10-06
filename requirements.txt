@@ -4,3 +4,9 @@ opencv-contrib-python==4.11.0.86
 numpy<2
 scipy
 matplotlib
+# Stage 3: simulation (robosuite also lists opencv-python; the contrib build above replaces it)
+robosuite==1.4.0
+mujoco==3.8.1
+termcolor
+numba
+imageio[ffmpeg]
