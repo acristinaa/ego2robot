@@ -25,9 +25,7 @@ credentials.json
 secrets.*
 
 data/raw_videos/*
-data/processed/*
 !data/raw_videos/.gitkeep
-!data/processed/.gitkeep
 
 *.mp4
 *.mov
@@ -39,7 +37,7 @@ data/processed/*
 *.onnx
 *.h5
 *.npy
-*.npz
+
 
 *.log
 logs/
@@ -52,3 +50,6 @@ Thumbs.db
 
 .vscode/
 .idea/
+
+models/
+raw.npz

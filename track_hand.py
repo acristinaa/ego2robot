@@ -9,7 +9,7 @@ import mediapipe as mp
 from mediapipe.tasks import python as mp_tasks
 from mediapipe.tasks.python import vision
 
-MARKER_SIZE = 0.135  # metres, measured black square side of YOUR printout
+MARKER_SIZE = 0.135  #metres, measured black square side 
 MARKER_ID = 0
 MODEL_URL = ("https://storage.googleapis.com/mediapipe-models/hand_landmarker/"
              "hand_landmarker/float16/1/hand_landmarker.task")
@@ -81,8 +81,6 @@ def main():
 
     aruco = cv2.aruco.ArucoDetector(cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_4X4_50),
                                     cv2.aruco.DetectorParameters())
-    # CPU delegate: on macOS the default GPU (Metal) path can crash
-    # ("graph_service.h Check failed: service_ Service is unavailable").
     landmarker = vision.HandLandmarker.create_from_options(vision.HandLandmarkerOptions(
         base_options=mp_tasks.BaseOptions(model_asset_path=str(MODEL_PATH),
                                           delegate=mp_tasks.BaseOptions.Delegate.CPU),
@@ -90,11 +88,14 @@ def main():
         min_hand_detection_confidence=0.5, min_tracking_confidence=0.5))
 
     px_all, world_all, poses = [], [], []
+    marker_t, marker_r = [], []  #per-frame marker pose (NaN when not visible)
     n = 0
     while ok:
         pose = marker_pose(cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY), aruco, K)
         if pose is not None:
             poses.append(pose)
+        marker_t.append(pose[1] if pose is not None else np.full(3, np.nan))
+        marker_r.append(cv2.Rodrigues(pose[0])[0].ravel() if pose is not None else np.full(3, np.nan))
         res = landmarker.detect_for_video(
             mp.Image(image_format=mp.ImageFormat.SRGB, data=cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)),
             int(n * 1000 / fps))
@@ -115,14 +116,15 @@ def main():
 
     if not poses:
         raise SystemExit("Marker never detected. Check lighting / that the marker is in view.")
-    # The phone does not move -> one robust marker pose for the whole video.
+    #Robust single pose (used for the overlay); stage 2 uses the smoothed per-frame poses because a phone on a makeshift mount can sag a few cm over a long recording.
     t_med = np.median([p[1] for p in poses], axis=0)
     R_cm = min(poses, key=lambda p: np.linalg.norm(p[1] - t_med))[0]
     jitter_mm = float(np.linalg.norm(np.std([p[1] for p in poses], axis=0)) * 1000)
 
     px_all, world_all = np.array(px_all), np.array(world_all)
     np.savez(out_dir / "raw.npz", px=px_all, world=world_all, K=K, R_marker_cam=R_cm,
-             t_marker_cam=t_med, fps=fps, size=np.array([w, h]))
+             t_marker_cam=t_med, fps=fps, size=np.array([w, h]),
+             marker_t=np.array(marker_t), marker_rvec=np.array(marker_r))
 
     stats = {
         "frames": n,

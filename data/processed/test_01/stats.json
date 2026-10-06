@@ -1,0 +1,20 @@
+{
+  "frames": 615,
+  "marker_detected_pct": 72.2,
+  "hand_detected_pct": 100.0,
+  "camera_to_marker_distance_m": 0.895,
+  "grasp_xyz_min_m": [
+    -0.314,
+    -0.172,
+    -0.337
+  ],
+  "grasp_xyz_max_m": [
+    0.078,
+    0.297,
+    0.531
+  ],
+  "aperture_min_max_m": [
+    0.009,
+    0.085
+  ]
+}
