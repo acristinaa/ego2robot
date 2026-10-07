@@ -17,16 +17,9 @@ EVAL_SEED0 = 900_000
 
 
 def to_batch(obs):
-    batch = {
-        f"observation.images.camera{i + 1}": torch.from_numpy(
-            obs[f"{c}_image"][::-1].copy()
-        )
-        .permute(2, 0, 1)
-        .float()
-        .unsqueeze(0)
-        / 255
-        for i, c in enumerate(CAMERAS)
-    }
+    batch = {f"observation.images.camera{i + 1}":
+             torch.from_numpy(obs[f"{c}_image"][::-1].copy()).permute(2, 0, 1).float().unsqueeze(0) / 255
+             for i, c in enumerate(CAMERAS)}
     batch["observation.state"] = torch.from_numpy(robot_state(obs)).unsqueeze(0)
     batch["task"] = [TASK]
     return batch
@@ -34,31 +27,22 @@ def to_batch(obs):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument(
-        "checkpoint", help="folder containing config.json + model.safetensors"
-    )
+    ap.add_argument("checkpoint", help="folder containing config.json + model.safetensors")
     ap.add_argument("--episodes", type=int, default=50)
     ap.add_argument("--max-steps", type=int, default=500)
-    ap.add_argument(
-        "--videos", type=int, default=6, help="save this many episodes as mp4"
-    )
+    ap.add_argument("--videos", type=int, default=6, help="save this many episodes as mp4")
     ap.add_argument("--out", default="outputs/eval")
+    ap.add_argument("--device", default=None, help="cuda / mps (Apple GPU) / cpu; default: best available")
     args = ap.parse_args()
 
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+    device = args.device or ("cuda" if torch.cuda.is_available()
+                             else "mps" if torch.backends.mps.is_available() else "cpu")
+    print(f"device: {device}")
     cfg = PreTrainedConfig.from_pretrained(args.checkpoint)
     cfg.device = device
-    policy = (
-        get_policy_class(cfg.type)
-        .from_pretrained(args.checkpoint, config=cfg)
-        .to(device)
-        .eval()
-    )
-    pre, post = make_pre_post_processors(
-        cfg,
-        pretrained_path=args.checkpoint,
-        preprocessor_overrides={"device_processor": {"device": device}},
-    )
+    policy = get_policy_class(cfg.type).from_pretrained(args.checkpoint, config=cfg).to(device).eval()
+    pre, post = make_pre_post_processors(cfg, pretrained_path=args.checkpoint,
+                                         preprocessor_overrides={"device_processor": {"device": device}})
     env = make_env(render=True)
     os.makedirs(args.out, exist_ok=True)
 
@@ -75,41 +59,23 @@ def main():
                 action = post(policy.select_action(pre(to_batch(obs))))
             action = action.squeeze(0).float().cpu().numpy()
             if ep < args.videos:
-                frames.append(
-                    np.concatenate([obs[f"{c}_image"][::-1] for c in CAMERAS], 1)
-                )
+                frames.append(np.concatenate([obs[f"{c}_image"][::-1] for c in CAMERAS], 1))
             obs, *_ = env.step(action)
             if env._check_success():
                 success = True
                 break
-        results.append(
-            {"episode": ep, "seed": EVAL_SEED0 + ep, "success": success, "steps": steps}
-        )
+        results.append({"episode": ep, "seed": EVAL_SEED0 + ep, "success": success, "steps": steps})
         if frames:
             import imageio
-
-            imageio.mimsave(
-                f"{args.out}/ep{ep:02d}_{'success' if success else 'fail'}.mp4",
-                frames,
-                fps=20,
-            )
+            imageio.mimsave(f"{args.out}/ep{ep:02d}_{'success' if success else 'fail'}.mp4", frames, fps=20)
         rate = np.mean([r["success"] for r in results])
-        print(
-            f"episode {ep:3d}: {'SUCCESS' if success else 'fail   '} in {steps:3d} steps | "
-            f"running success {100 * rate:.0f}% ({time.time() - t0:.0f}s)",
-            flush=True,
-        )
+        print(f"episode {ep:3d}: {'SUCCESS' if success else 'fail   '} in {steps:3d} steps | "
+              f"running success {100 * rate:.0f}% ({time.time() - t0:.0f}s)", flush=True)
 
-    summary = {
-        "checkpoint": str(args.checkpoint),
-        "episodes": args.episodes,
-        "success_rate": float(np.mean([r["success"] for r in results])),
-        "per_episode": results,
-    }
+    summary = {"checkpoint": str(args.checkpoint), "episodes": args.episodes,
+               "success_rate": float(np.mean([r["success"] for r in results])), "per_episode": results}
     Path(f"{args.out}/results.json").write_text(json.dumps(summary, indent=2))
-    print(
-        f"\nSuccess rate: {100 * summary['success_rate']:.1f}% over {args.episodes} unseen scenes"
-    )
+    print(f"\nSuccess rate: {100 * summary['success_rate']:.1f}% over {args.episodes} unseen scenes")
 
 
 if __name__ == "__main__":

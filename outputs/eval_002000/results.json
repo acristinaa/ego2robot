@@ -1,0 +1,307 @@
+{
+  "checkpoint": "checkpoints/smolvla_002000",
+  "episodes": 50,
+  "success_rate": 0.32,
+  "per_episode": [
+    {
+      "episode": 0,
+      "seed": 900000,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 1,
+      "seed": 900001,
+      "success": true,
+      "steps": 191
+    },
+    {
+      "episode": 2,
+      "seed": 900002,
+      "success": true,
+      "steps": 170
+    },
+    {
+      "episode": 3,
+      "seed": 900003,
+      "success": true,
+      "steps": 232
+    },
+    {
+      "episode": 4,
+      "seed": 900004,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 5,
+      "seed": 900005,
+      "success": true,
+      "steps": 184
+    },
+    {
+      "episode": 6,
+      "seed": 900006,
+      "success": true,
+      "steps": 474
+    },
+    {
+      "episode": 7,
+      "seed": 900007,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 8,
+      "seed": 900008,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 9,
+      "seed": 900009,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 10,
+      "seed": 900010,
+      "success": true,
+      "steps": 272
+    },
+    {
+      "episode": 11,
+      "seed": 900011,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 12,
+      "seed": 900012,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 13,
+      "seed": 900013,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 14,
+      "seed": 900014,
+      "success": true,
+      "steps": 188
+    },
+    {
+      "episode": 15,
+      "seed": 900015,
+      "success": true,
+      "steps": 136
+    },
+    {
+      "episode": 16,
+      "seed": 900016,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 17,
+      "seed": 900017,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 18,
+      "seed": 900018,
+      "success": true,
+      "steps": 430
+    },
+    {
+      "episode": 19,
+      "seed": 900019,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 20,
+      "seed": 900020,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 21,
+      "seed": 900021,
+      "success": true,
+      "steps": 230
+    },
+    {
+      "episode": 22,
+      "seed": 900022,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 23,
+      "seed": 900023,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 24,
+      "seed": 900024,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 25,
+      "seed": 900025,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 26,
+      "seed": 900026,
+      "success": true,
+      "steps": 178
+    },
+    {
+      "episode": 27,
+      "seed": 900027,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 28,
+      "seed": 900028,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 29,
+      "seed": 900029,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 30,
+      "seed": 900030,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 31,
+      "seed": 900031,
+      "success": true,
+      "steps": 154
+    },
+    {
+      "episode": 32,
+      "seed": 900032,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 33,
+      "seed": 900033,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 34,
+      "seed": 900034,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 35,
+      "seed": 900035,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 36,
+      "seed": 900036,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 37,
+      "seed": 900037,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 38,
+      "seed": 900038,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 39,
+      "seed": 900039,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 40,
+      "seed": 900040,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 41,
+      "seed": 900041,
+      "success": true,
+      "steps": 250
+    },
+    {
+      "episode": 42,
+      "seed": 900042,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 43,
+      "seed": 900043,
+      "success": true,
+      "steps": 196
+    },
+    {
+      "episode": 44,
+      "seed": 900044,
+      "success": true,
+      "steps": 230
+    },
+    {
+      "episode": 45,
+      "seed": 900045,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 46,
+      "seed": 900046,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 47,
+      "seed": 900047,
+      "success": false,
+      "steps": 500
+    },
+    {
+      "episode": 48,
+      "seed": 900048,
+      "success": true,
+      "steps": 429
+    },
+    {
+      "episode": 49,
+      "seed": 900049,
+      "success": false,
+      "steps": 500
+    }
+  ]
+}

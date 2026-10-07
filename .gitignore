@@ -55,3 +55,8 @@ models/
 raw.npz
 
 data/sim_episodes/sim_episodes.zip
+checkpoints/
+.venv-lerobot/
+data/sim_episodes/
+sim_episodes.zip
+outputs/eval_test/
