@@ -117,34 +117,3 @@ python -c "import lerobot, pathlib; p = pathlib.Path(lerobot.__file__).parent / 
 
 PYTORCH_ENABLE_MPS_FALLBACK=1 python -m sim.eval_policy checkpoints/smolvla_010000 --episodes 50 --videos 6 --out outputs/eval_010000
 ```
-
-## Design choices
-
-- **Phone + marker instead of a depth camera or headset.** Anyone can reproduce it with a phone
-  and a printed sheet of paper. The cost is depth, which is what anchored depth solves
-- **Pinch point + open/closed, not full hand pose.** A parallel gripper only needs where the
-  fingers meet and whether they are closed
-- **Object-centric retargeting.** The phone demo and the simulated scene never have the bowl in the
-  same place, so the motion is expressed relative to the objects. This turns 20 demos into as many
-  robot episodes as needed
-- **Keep only successful replays.** The policy learns from 178 clean episodes instead of all 200
-- **SmolVLA.** Small enough to fine-tune on a free GPU, and its base checkpoint expects three cameras
-  and a language instruction ("put the bowl on the plate"), which the dataset provides
-
-## What did not work
-
-- **Thumb–index distance as the grasp signal:** It did not reliably separate an open hand from a
-  hand gripping the bowl rim. Finger curl relative to palm size works
-- **Plain monocular depth:** Hand-size based depth put the hand anywhere from −34 cm to +53 cm above
-  the table
-- **A single marker pose for the whole video:** The phone sags slowly in the holder (24 mm of shake);
-  the marker pose is now estimated per frame and smoothed over 3 s
-- **Speed-limiting the robot without stretching time:** The gripper closed before the hand reached the
-  bowl. The plan is now stretched in time so targets never move more than 1.5 cm per step
-- **Two demos replay badly:** (`demo_16`: 0/10, `demo_18`: 1/10). I did not investigate them; they
-  are simply left out of the training data
-- **bfloat16 on the T4:** The T4 has no native bfloat16, so training ran at 7 s/step and mixed
-  precision crashed. Loading the VLM in float32 with fp16 autocast gives 1.6 s/step
-- **Policy failures:** In the failed episodes I watched, the policy reaches the right area but does not close
-  the gripper on the rim, or goes to the plate first. Longer training fixed most of this: 32% at 2000
-  steps, 68% at 10000, and the loss was still dropping at the end
