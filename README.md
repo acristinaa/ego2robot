@@ -148,13 +148,3 @@ PYTORCH_ENABLE_MPS_FALLBACK=1 python -m sim.eval_policy checkpoints/smolvla_0100
 - **Policy failures:** In the failed episodes I watched, the policy reaches the right area but does not close
   the gripper on the rim, or goes to the plate first. Longer training fixed most of this: 32% at 2000
   steps, 68% at 10000, and the loss was still dropping at the end
-
-## Repository
-
-```
-track_hand.py, extract_demos.py   stages 1-3 (phone video -> demos)
-sim/                              simulation task, retargeting, replay, dataset conversion, evaluation
-notebooks/                        Colab training notebook
-data/processed/                   extracted demos (raw videos are not included)
-outputs/                          replay and evaluation results
-```
