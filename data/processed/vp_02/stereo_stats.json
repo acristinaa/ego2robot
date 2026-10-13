@@ -1,0 +1,9 @@
+{
+  "frames": 2434,
+  "fov_deg": 71.59,
+  "baseline_mm": 63.71,
+  "marker_detected_pct": 75.8,
+  "hand_in_both_eyes_pct": 38.4,
+  "eye_to_marker_m": 0.607,
+  "disparity_px_median": 95.1
+}

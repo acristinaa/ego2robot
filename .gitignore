@@ -60,3 +60,4 @@ checkpoints/
 data/sim_episodes/
 sim_episodes.zip
 outputs/eval_test/
+stereo.npz

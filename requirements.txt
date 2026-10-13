@@ -9,4 +9,4 @@ robosuite==1.4.0
 mujoco==3.8.1
 termcolor
 numba
-imageio[ffmpeg]
+imageio[ffmpeg]av==16.0.1

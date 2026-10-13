@@ -1,0 +1,34 @@
+{
+  "audio_offset_s": 2.73,
+  "vision_pro_height_hand_flat_cm": {
+    "median": 0.9,
+    "p10": 0.2,
+    "p90": 1.8
+  },
+  "frames_compared": 570,
+  "demos_covered": 8,
+  "error_3d": {
+    "median_cm": 5.9,
+    "p90_cm": 15.5
+  },
+  "error_height": {
+    "median_cm": 4.1,
+    "p90_cm": 11.1
+  },
+  "error_along_phone_ray": {
+    "median_cm": 4.1,
+    "p90_cm": 11.6
+  },
+  "error_across_phone_ray": {
+    "median_cm": 2.0,
+    "p90_cm": 10.1
+  },
+  "error_3d_while_holding": {
+    "median_cm": 8.8,
+    "p90_cm": 15.5
+  },
+  "error_3d_while_moving_freely": {
+    "median_cm": 3.5,
+    "p90_cm": 15.4
+  }
+}
