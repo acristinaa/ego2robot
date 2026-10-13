@@ -117,3 +117,43 @@ python -c "import lerobot, pathlib; p = pathlib.Path(lerobot.__file__).parent / 
 
 PYTORCH_ENABLE_MPS_FALLBACK=1 python -m sim.eval_policy checkpoints/smolvla_010000 --episodes 50 --videos 6 --out outputs/eval_010000
 ```
+## Extra: checking the phone depth with an Apple Vision Pro
+
+There is anchored depth because one camera does not have the ability to measure depth. To find out how
+wrong it still is, I recorded 8 more demos with the iPhone and an Apple Vision Pro at the
+At the same time (`session_02`), and as a reference, he used the Vision Pro.
+
+The Vision Pro captures spatial video, which consists of two rectified cameras spaced 63.7 mm apart and archived as two.
+One MV-HEVC stream's views. [`vision_pro/track_stereo.py`](vision_pro/track_stereo.py)
+Decodes both eyes using PyAV, detects the marker and the hand in each and triangulates.
+Pinch point (depth = focal length × baseline / disparity). Exposure times for baseline and field of view.
+The baseline measured from the marker poses was 63.3 mm, from the metadata of the file itself;
+Confirmed the model of the camera. The two recordings are synchronised by cross-correlating the recordings.
+audio ([`vision_pro/compare_depth.py`](vision_pro/compare_depth.py))
+
+| | median | 90th percentile |
+|---|---|---|
+| Vision Pro, hand flat on the table (true height ≈ 1–1.5 cm) | 0.9 cm | 1.8 cm |
+| iPhone vs Vision Pro, 3D | 5.9 cm | 15.5 cm |
+| along the phone's line of sight | 4.1 cm | 11.6 cm |
+| sideways | 2.0 cm | 10.1 cm |
+| hand free / holding the bowl | 3.5 cm / 8.8 cm | |
+
+570 frames from all 8 demos ([`outputs/vision_pro/depth_check.json`](outputs/vision_pro/depth_check.json))
+
+![iPhone vs Vision Pro](outputs/vision_pro/depth_check.png)
+
+What shows:
+1. As expected from a single camera, the phone is about twice as wrong in depth as it is sideways
+2. Near the table they agree, but when I lift the bowl, the phone underestimates its height. Anchored depth only knows the true height when a grasp begins and ends, and flattens the lift in between
+3. The Vision Pro isn't flawless either: MediaPipe detected the hand in both eyes in only 38% of frames (from head height, the hand is often at the edge of the image, or seen from the back while it holds the bowl)
+4. Cropping the image to the table raised that from 27% to 38%
+
+To run it (needs `session_02.MOV` and `vp_02.mov` in `data/raw_videos/`):
+
+```bash
+python track_hand.py data/raw_videos/session_02.MOV
+python extract_demos.py data/processed/session_02
+python -m vision_pro.track_stereo data/raw_videos/vp_02.mov
+python -m vision_pro.compare_depth
+```
